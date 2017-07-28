@@ -1,0 +1,50 @@
+info:
+  component: Edge Server
+  
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+zuul:
+  prefix: /api
+  
+#  routes:
+#    account: 
+#      path: /config/**
+#      serviceId: cloud-config-dev
+#    customer: 
+#      path: /customer/**
+#      serviceId: customer-service          
+    
+ribbon:
+  eureka:
+    enabled: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    registerWithEureka: false
+      
+server:
+  port: 8765
+
+
+#cas
+cas:
+  serverUrlPrefix: http://10.168.0.187:8080
+  serverLoginUrl: http://10.168.0.187:8080/login/
+  clientHostUrl: http://localhost:8765
+  validationType: CAS
+  use-session: true
+  validation-url-patterns: /*
+  authentication-url-patterns: /*
+  
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: DEBUG
